@@ -14,14 +14,7 @@ export function getBotw(category) {
     }
 }
 
-export function removeBotw() {
-
-    return async function getBotw(dispatch, getState) {
-        dispatch({ type: REMOVE_BOTW });
-    }
-}
-
-export function getBotwDetail( id) {
+export function getBotwDetail(id) {
     const url = `https://botw-compendium.herokuapp.com/api/v2/entry/${id}`;
 
     return async function getBotw(dispatch, getState) {

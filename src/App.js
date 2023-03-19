@@ -5,8 +5,7 @@ import AmiiboSearchResult from "./page/AmiiboSearchResult";
 import BOTW from "./page/BOTW";
 import Main from "./page/Main";
 import BotwLayout from "./layout/BotwLayout";
-import BOTWCreaturesDetail from "./page/BOTWCreaturesDetail";
-import DetailRoute from "./layout/DetailRoute";
+import BOTWDetail from "./page/BOTWDetail";
 
 function App() {
   return (
@@ -24,32 +23,32 @@ function App() {
           <Route path="botw" element={<BotwLayout />}>
             <Route path="/botw">
               <Route index element={<BOTW category='all' />} />
-              <Route path=":id" element={<DetailRoute />} />
+              <Route path=":id" element={<BOTWDetail />} />
             </Route>
 
             <Route path="creatures">
               <Route index element={<BOTW category='creatures' />} />
-              <Route path=":id" element={<DetailRoute />} />
+              <Route path=":id" element={<BOTWDetail />} />
             </Route>
 
             <Route path="monsters">
               <Route index element={<BOTW category='monsters' />} />
-              <Route path=":id" element={<DetailRoute />} />
+              <Route path=":id" element={<BOTWDetail />} />
             </Route>
 
             <Route path="materials">
               <Route index element={<BOTW category='materials' />} />
-              <Route path=":id" element={<DetailRoute />} />
+              <Route path=":id" element={<BOTWDetail />} />
             </Route>
 
             <Route path="equipment">
               <Route index element={<BOTW category='equipment' />} />
-              <Route path=":id" element={<DetailRoute />} />
+              <Route path=":id" element={<BOTWDetail />} />
             </Route>
 
             <Route path="treasure">
               <Route index element={<BOTW category='treasure' />} />
-              <Route path=":id" element={<DetailRoute />} />
+              <Route path=":id" element={<BOTWDetail />} />
             </Route>
 
           </Route>

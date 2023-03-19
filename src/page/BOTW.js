@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getBotw, removeBotw } from '../api/BotwAPI';
+import { getBotw } from '../api/BotwAPI';
 import BotwItem from '../component/BotwItem';
 
 function BOTW({ category }) {
@@ -14,7 +14,6 @@ function BOTW({ category }) {
 
     useEffect(
         () => {
-            dispatch(removeBotw());
             dispatch(getBotw(category));
         },
         [category]
@@ -42,7 +41,7 @@ function BOTW({ category }) {
                 )
             );
         } catch (error) {
-            <h1>Loading...</h1>
+            return <h1>Loading...</h1>;
         }
     }
 
@@ -60,7 +59,7 @@ function BOTW({ category }) {
                 )
             );
         } catch (error) {
-            <h1>Loading...</h1>
+            return <h1>Loading...</h1>;
         }
     }
 
@@ -76,7 +75,7 @@ function BOTW({ category }) {
             )
         );
     } catch (error) {
-        <h1>Loading...</h1>
+        return <h1>Loading...</h1>;
     }
 
 }
