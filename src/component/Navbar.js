@@ -4,8 +4,9 @@ function Navbar() {
     return (
         <div>
             <ul>
-                <li><NavLink to="/">메인화면</NavLink></li>
-                <li><NavLink to="/amiibo">아미보</NavLink></li>
+                <li><NavLink to="/">Main Page</NavLink></li>
+                <li><NavLink to="/amiibo">Amiibo</NavLink></li>
+                <li><NavLink to="/botw">The Legend Of Zelda : Breath Of The Wild</NavLink></li>
             </ul>
         </div>
     );

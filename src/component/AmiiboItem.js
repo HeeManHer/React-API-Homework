@@ -1,12 +1,10 @@
-import '../css/amiiboStyle.css';
+import '../css/cardStyle.css';
 import Error from '../page/Error';
 
 function AmiiboItem({ amiibo }) {
-
-
     
     if (amiibo == null) {
-        return <Error />
+        return <Error />;
     }
 
     return (

@@ -3,14 +3,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getAmiibo } from '../api/AmiiboAPI';
 import AmiiboItem from '../component/AmiiboItem';
-import { SET_CATEGORY } from '../module/category';
 import { SET_SEARCH } from '../module/search';
+import { SET_PAGE } from '../module/page';
+import PageBar from "../component/PageingBar";
+import '../css/cardStyle.css';
 
 function Amiibo() {
 
-    const { amiiboReducer, searchReducer: searchVlaue, categoryReducer: category } = useSelector(state => state);
+    const { amiiboReducer, searchReducer: searchVlaue, pageReducer } = useSelector(state => state);
 
     const amiibo = amiiboReducer.amiibo;
+
+    const cardCount = 30;
+    const start = cardCount * pageReducer;
+    const end = start + cardCount;
 
     const dispatch = useDispatch();
 
@@ -18,28 +24,15 @@ function Amiibo() {
 
     useEffect(
         () => {
+            dispatch({ type: SET_SEARCH, payload: '' });
             dispatch(getAmiibo());
+            dispatch({ type: SET_PAGE, payload: 0 });
         },
         []
     );
 
-    const onClickHandler = (category, searchVlaue) => {
-        console.log(category, searchVlaue);
-        switch (category) {
-            case 'character':
-                navigate(`/amiibo/search?character=${searchVlaue}`);
-                break;
-            case 'gameSeries':
-                navigate(`/amiibo/search?gameSeries=${searchVlaue}`);
-                break;
-            case 'amiiboSeries':
-                navigate(`/amiibo/search?amiiboSeries=${searchVlaue}`);
-                break;
-        }
-    }
-
-    const onCategoryChange = (category) => {
-        dispatch({ type: SET_CATEGORY, payload: category });
+    const onClickHandler = () => {
+        navigate(`/amiibo/search?character=${searchVlaue}`);
     }
 
     const onSearchChange = (search) => {
@@ -49,19 +42,21 @@ function Amiibo() {
     return (
         amiibo && (
             <>
+                <PageBar />
                 <label>검색 </label>
                 <label>캐릭터 : </label>
                 <input
                     type="search"
-                    name={category}
+                    name="searchVlaue"
                     value={searchVlaue}
                     onChange={e => onSearchChange(e.target.value)}
                 />
-                <button onClick={onClickHandler(category, searchVlaue)}>이동</button>
+                <button onClick={onClickHandler}>이동</button>
                 <br />
                 <div>
-                    {amiibo.map(amiibo => <AmiiboItem amiibo={amiibo} key={amiibo.tail} />)}
+                    {amiibo.slice(start, end).map(amiibo => <AmiiboItem amiibo={amiibo} key={amiibo.tail} />)}
                 </div>
+                <PageBar />
             </>
         )
     );

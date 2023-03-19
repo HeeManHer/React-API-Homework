@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import amiiboReducer from './amiibo';
 import searchReducer from './search';
-import categoryReducer from './category';
+import botwReducer from './botw';
+import pageReducer from './page';
 
 const rootReducer = combineReducers({
     amiiboReducer,
     searchReducer,
-    categoryReducer
+    botwReducer,
+    pageReducer
 });
 
 export default rootReducer;
